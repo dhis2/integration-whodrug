@@ -1,0 +1,5 @@
+#whodrug-to-dhis2:
+# whodrug:
+#    client-key: xxx
+#    license-key: xxx
+#    base-url: http://xxx
