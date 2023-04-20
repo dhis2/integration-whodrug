@@ -32,7 +32,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.hisp.dhis.integration.whodrug.config.properties.WhoDrugProperties;
-import org.hisp.dhis.integration.whodrug.domain.OptionSet;
+import org.hisp.dhis.integration.whodrug.domain.Metadata;
 import org.hisp.dhis.integration.whodrug.domain.whodrug.WhoDrugs;
 import org.springframework.stereotype.Component;
 
@@ -51,8 +51,9 @@ public class WhoDrugRoute extends RouteBuilder
             .setHeader( "umc-license-key", constant( whoDrugProperties.getLicenseKey() ) )
             .to( whoDrugProperties.getBaseUrl() + WhoDrugProperties.API_ENDPOINT )
             .unmarshal( new JacksonDataFormat( WhoDrugs.class ) )
-            .convertBodyTo( OptionSet.class )
-            .marshal().json()
-            .log( "${body}" );
+            .convertBodyTo( Metadata.class )
+            .marshal().json( true )
+            .to( "file:data?fileName=optionSet.json" )
+            .log( "Conversion done." );
     }
 }

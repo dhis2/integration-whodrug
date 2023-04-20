@@ -25,40 +25,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.hisp.dhis.integration.whodrug.converters;
+package org.hisp.dhis.integration.whodrug.domain;
 
-import lombok.RequiredArgsConstructor;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.camel.Converter;
-import org.apache.camel.Exchange;
-import org.apache.camel.TypeConverters;
-import org.hisp.dhis.integration.whodrug.domain.Metadata;
-import org.hisp.dhis.integration.whodrug.domain.Option;
-import org.hisp.dhis.integration.whodrug.domain.OptionSet;
-import org.hisp.dhis.integration.whodrug.domain.whodrug.WhoDrugs;
-import org.springframework.stereotype.Component;
+import lombok.Data;
 
-@Component
-@RequiredArgsConstructor
-public class WhoDrugOptionSetConverter implements TypeConverters
+@Data
+public class Metadata
 {
-    @Converter
-    public Metadata toMetadata( WhoDrugs whoDrugs, Exchange exchange )
-    {
-        Metadata metadata = new Metadata();
+    private List<Option> options = new ArrayList<>();
 
-        OptionSet optionSet = new OptionSet();
-        optionSet.setId( "ljTG7pZCdH8" );
-        optionSet.setName( "WHODrug" );
-        optionSet.setCode( "WHODrug" );
-
-        metadata.getOptionSets().add( optionSet );
-
-        whoDrugs.forEach( wd -> {
-            optionSet.getOptions().add( new Option().setCode( wd.getDrugCode() ) );
-            metadata.getOptions().add( new Option().setCode( wd.getDrugCode() ).setName( wd.getDrugName() ) );
-        } );
-
-        return metadata;
-    }
+    private List<OptionSet> optionSets = new ArrayList<>();
 }

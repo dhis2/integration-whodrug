@@ -33,10 +33,12 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 @Data
 @JsonIgnoreProperties( ignoreUnknown = true )
 @Accessors( chain = true )
+@JsonInclude( JsonInclude.Include.NON_NULL )
 public class Option
 {
     @NotEmpty
