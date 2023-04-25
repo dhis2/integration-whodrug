@@ -32,6 +32,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.camel.Converter;
 import org.apache.camel.Exchange;
 import org.apache.camel.TypeConverters;
+import org.hisp.dhis.integration.whodrug.config.properties.DhisProperties;
 import org.hisp.dhis.integration.whodrug.domain.Metadata;
 import org.hisp.dhis.integration.whodrug.domain.Option;
 import org.hisp.dhis.integration.whodrug.domain.OptionSet;
@@ -42,15 +43,16 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class WhoDrugOptionSetConverter implements TypeConverters
 {
+    private final DhisProperties dhisProperties;
+
     @Converter
     public Metadata toMetadata( WhoDrugs whoDrugs, Exchange exchange )
     {
         Metadata metadata = new Metadata();
 
         OptionSet optionSet = new OptionSet();
-        optionSet.setId( "ljTG7pZCdH8" );
-        optionSet.setName( "WHODrug" );
-        optionSet.setCode( "WHODrug" );
+        optionSet.setName(dhisProperties.getName() );
+        optionSet.setCode(dhisProperties.getCode() );
 
         metadata.getOptionSets().add( optionSet );
 

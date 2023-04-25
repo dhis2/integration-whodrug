@@ -31,24 +31,40 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
 @Data
-/*
- * Disabled for now.
- *
- * @Component
- *
- * @Validated
- *
- * @ConfigurationProperties( "whodrug-to-dhis2.dhis2" )
- */
+@Component
+@Validated
+@ConfigurationProperties( "whodrug-to-dhis2.dhis2" )
 public class DhisProperties
 {
-    @NotNull
+    /**
+     * baseUrl of the DHIS2 instance.
+     */
     private String baseUrl;
 
-    @NotNull
+    /**
+     * username of the DHIS2 instance.
+     */
     private String username;
 
-    @NotNull
+    /**
+     * password of the DHIS2 instance.
+     */
     private String password;
+
+    /**
+     * OptionSet code.
+     */
+    @NotNull
+    private String code = "whodrug";
+
+    /**
+     * OptionSet name.
+     */
+    @NotNull
+    private String name = "WHODrug";
 }
