@@ -51,14 +51,14 @@ public class WhoDrugOptionSetConverter implements TypeConverters
         Metadata metadata = new Metadata();
 
         OptionSet optionSet = new OptionSet();
-        optionSet.setName(dhisProperties.getName() );
-        optionSet.setCode(dhisProperties.getCode() );
+        optionSet.setName( dhisProperties.getName() );
+        optionSet.setCode( dhisProperties.getCode() );
 
         metadata.getOptionSets().add( optionSet );
 
         whoDrugs.forEach( wd -> {
-            optionSet.getOptions().add( new Option().setCode( wd.getDrugCode() ) );
-            metadata.getOptions().add( new Option().setCode( wd.getDrugCode() ).setName( wd.getDrugName() ) );
+            optionSet.getOptions().add( new Option().setCode( wd.getMedicinalProductID() ) );
+            metadata.getOptions().add( new Option().setCode( wd.getMedicinalProductID() ).setName( wd.getDrugName() ) );
         } );
 
         return metadata;

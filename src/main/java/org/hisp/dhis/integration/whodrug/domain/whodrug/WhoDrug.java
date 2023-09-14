@@ -39,5 +39,5 @@ public class WhoDrug
 
     private String drugCode;
 
-    private Integer medicinalProductID;
+    private String medicinalProductID;
 }
