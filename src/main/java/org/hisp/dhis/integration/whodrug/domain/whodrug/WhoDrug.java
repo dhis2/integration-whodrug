@@ -38,4 +38,6 @@ public class WhoDrug
     private String drugName;
 
     private String drugCode;
+
+    private Integer medicinalProductID;
 }
