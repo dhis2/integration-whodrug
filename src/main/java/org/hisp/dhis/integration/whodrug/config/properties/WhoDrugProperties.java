@@ -41,7 +41,7 @@ import org.springframework.validation.annotation.Validated;
 @ConfigurationProperties( "whodrug-to-dhis2.whodrug" )
 public class WhoDrugProperties
 {
-    public static final String API_ENDPOINT = "/global-api/v2/regional-drugs";
+    public static final String API_ENDPOINT = "/download/v2/regional-drugs";
 
     @NotNull
     private String clientKey;
